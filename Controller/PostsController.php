@@ -1,11 +1,41 @@
 <?php
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Session');
-    public $components = array('Session');
+    public $components = array('Session', 'Search.Prg');
 
     public function index() {
         $this->set('posts', $this->Post->find('all'));
         // pr($this->Post->find('all'));
+
+        // いろいろ検証。parseParams()とpassedArgsは両方使える模様。
+        // $this->Prg->commonProcess();
+
+        // $paramss = $this->Prg->parsedParams();
+        // debug($params);
+        // $data = $this->request->data;
+        // debug($data);
+        // $args = $this->passedArgs;
+        // debug($args);   
+        // $criteria = $this->Post->parseCriteria($params);
+        // debug($criteria);   
+        // $find = $this->Post->find('all', array('conditions' => $criteria));
+        // debug($find);
+
+    }
+
+    public function find() {
+    //詳しくは次のページを見ましょう。http://mawatari.jp/archives/introduction-of-cakedc-search-plugin-for-cakephp
+        $this->Prg->commonProcess();
+
+        $params = $this->Prg->parsedParams();
+    //     debug($params);
+        // パース（構文解析）している。パースとは構文を解析して次に使えるデータとして変換すること。
+        $criteria = $this->Post->parseCriteria($params);
+    //     debug($criteria)
+
+        $find = $this->Post->find('all', array('conditions' => $criteria));
+        
+        $this->set('airticles', $find);
     }
 
     public function view($id) {

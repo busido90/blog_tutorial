@@ -5,10 +5,39 @@
     'Add Post',
     array('controller' => 'posts', 'action' => 'add')
 ); ?>
-<table>
+
+<?php
+// echo $this->Form->create('Post', array('action' => 'find'));
+// echo $this->Form->input('title');
+// echo $this->Form->end('Save Post');
+?>
+
+<?php
+echo $this->Form->create('Post', array(
+    'inputDefaults' => array(
+        'div' => false,
+        'label' => false,
+     'wrapInput' => false,
+    ),
+    'class' => 'well form-inline',
+    'action' => 'find'
+));
+echo $this->Form->input('title', array(
+        'class' => 'input-small',
+        'placeholder' => '検索タイトル'
+));
+echo $this->Form->submit('検索', array(
+        'div' => false,
+        'class' => 'btn-success'
+    ));;
+echo $this->Form->end();
+?>
+
+<table class="table">
     <tr>
         <th>Id</th>
         <th>Title</th>
+        <th>編集</th>
         <th>Created</th>
     </tr>
 
