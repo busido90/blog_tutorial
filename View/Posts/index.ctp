@@ -1,10 +1,23 @@
 <!-- File: /app/View/Posts/index.ctp -->
 
 <h1>Blog posts</h1>
-<?php echo $this->Html->link(
+<?php
+
+echo $this->Html->link(
     'Add Post',
     array('controller' => 'posts', 'action' => 'add')
-); ?>
+); 
+
+echo "</br>";
+
+echo $this->Html->link(
+    'View Categories',
+    array('controller' => 'categories', 'action' => 'index')
+);
+
+?>
+
+
 
 <?php
 // echo $this->Form->create('Post', array('action' => 'find'));
@@ -33,10 +46,11 @@ echo $this->Form->submit('検索', array(
 echo $this->Form->end();
 ?>
 
-<table class="table">
+<table class="table table-condensed table-bordered">
     <tr>
         <th>Id</th>
         <th>Title</th>
+        <th>Category</th>
         <th>編集</th>
         <th>Created</th>
     </tr>
@@ -50,6 +64,8 @@ echo $this->Form->end();
             <?php echo $this->Html->link($post['Post']['title'],
 array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
         </td>
+        <td><?php echo $post['Category']['name']; ?></td>
+
         <td>
              <?php echo $this->Form->postLink(
                 'Delete',

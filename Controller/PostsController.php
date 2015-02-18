@@ -2,6 +2,7 @@
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Session');
     public $components = array('Session', 'Search.Prg');
+    public $uses = array('Post', 'Category');
 
     public function index() {
         $this->set('posts', $this->Post->find('all'));
@@ -51,6 +52,11 @@ class PostsController extends AppController {
     }
 
     public function add() {
+
+        $this->set('select', $this->Category->find('list'/*,
+            array('fields' => array('id', 'name')
+        )*/));
+
         if ($this->request->is('post')) {
             $this->Post->create();
             if ($this->Post->save($this->request->data)) {

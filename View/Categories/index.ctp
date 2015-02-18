@@ -7,6 +7,7 @@ echo $this->Html->link(
     'Add Categories',
     array('controller' => 'categories', 'action' => 'add')
 );
+
 ?>
 
 <?php
@@ -51,8 +52,8 @@ echo $this->Html->link(
     <tr>
         <td><?php echo $category['Category']['id']; ?></td>
         <td>
-            <?php echo $this->Html->link($post['Category']['name'],
-array('controller' => 'categories', 'action' => 'view', $post['Category']['id'])); ?>
+            <?php echo $this->Html->link($category['Category']['name'],
+array('controller' => 'categories', 'action' => 'view', $category['Category']['id'])); ?>
         </td>
         <td>
              <?php echo $this->Form->postLink(
@@ -60,9 +61,9 @@ array('controller' => 'categories', 'action' => 'view', $post['Category']['id'])
                 array('action' => 'delete', $category['Category']['id']),
                 array('confirm' => 'Are you sure?'));
             ?>
-            <?php echo $this->Html->link('Edit', array('action' => 'edit', $post['Category']['id'])); ?>
+            <?php echo $this->Html->link('Edit', array('action' => 'edit', $category['Category']['id'])); ?>
         </td>
-        <td><?php echo $post['Category']['created']; ?></td>
+        <td><?php echo $category['Category']['created']; ?></td>
     </tr>
     <?php endforeach; ?>
     <?php unset($category); ?>
