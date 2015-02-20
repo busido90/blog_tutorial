@@ -49,7 +49,7 @@ echo $this->Form->end();
 <table class="table table-condensed table-bordered">
     <tr>
         <th>Id</th>
-        <th>Title</th>
+        <th>Title</th>  
         <th>Category</th>
         <th>編集</th>
         <th>Created</th>

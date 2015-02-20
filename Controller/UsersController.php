@@ -1,9 +1,12 @@
 <?php
 class UsersController extends AppController {
 
+    public $helpers = array('Html', 'Form', 'Session');
+    public $components = array('Session');
+
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'logout');
+        $this->Auth->allow('login', 'add', 'logout');
     }
 
     public function login() {

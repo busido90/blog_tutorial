@@ -34,7 +34,7 @@ class AppController extends Controller {
 
 
 	public $helpers = array(
-		'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
+		'Html' => array('className' => 	'BoostCake.BoostCakeHtml'),
 		'Form' => array('className' => 'BoostCake.BoostCakeForm'),
 		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator')
 	);
@@ -47,20 +47,20 @@ class AppController extends Controller {
                 'action' => 'index'
             ),
             'logoutRedirect' => array(
-                'controller' => 'pages',
-                'action' => 'display',
+                'controller' => 'users',
+                'action' => 'login',
                 'home'
             ),
             'authenticate' => array(
                 'Form' => array(
-                    'passwordHasher' => 'Blowfish'
+                    'passwordHasher' => 'Simple'
                 )
             )
         )
 	);
 
   	public function beforeFilter() {
-        $this->Auth->allow('index', 'view');
+        // $this->Auth->allow('index', 'view');
     }
 
 }
