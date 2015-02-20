@@ -10,10 +10,10 @@ echo $this->Form->create('BoostCake', array(
 	),
 	'class' => 'well'
 ));
-
+?>
 <fieldset>
-	<legend>Legend</legend>
-
+	<legend>Post add</legend>
+<?php
 echo $this->Form->input('text', array(
 	'label' => 'Title',
 	'placeholder' => 'タイトルを入力してください',
@@ -33,9 +33,7 @@ echo $this->Form->submit('Submit', array(
 	'div' => 'form-group',
 	'class' => 'btn btn-default'
 ));
+?>
 </fieldset>
 
-
 <?php echo $this->Form->end(); ?>
-
-?>

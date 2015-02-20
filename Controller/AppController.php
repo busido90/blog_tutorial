@@ -41,17 +41,27 @@ class AppController extends Controller {
 
 	public $components = array(
 		'DebugKit.Toolbar', 
-		// 'Auth' => array(
-		// 	'flash' => array(
-		// 		'element' => 'alert',
-		// 		'key' => 'auth',
-		// 		'params' => array(
-		// 			'plugin' => 'BoostCake',
-		// 			'class' => 'alert-error'
-		// 		)
-		// 	)
-		// )
+		'Auth' => array(
+            'loginRedirect' => array(
+                'controller' => 'posts',
+                'action' => 'index'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'pages',
+                'action' => 'display',
+                'home'
+            ),
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => 'Blowfish'
+                )
+            )
+        )
 	);
+
+  	public function beforeFilter() {
+        $this->Auth->allow('index', 'view');
+    }
 
 }
 
