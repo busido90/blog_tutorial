@@ -1,6 +1,26 @@
 <!-- File: /app/View/Posts/index.ctp -->
 
 <h1>Blog posts</h1>
+<div align="right">
+    <?php
+        echo $this->Html->link(
+            'logout',
+            array('controller' => 'users', 'action' => 'logout')
+        );
+    ?>
+</div>
+<h5>
+    ようこそ 
+    <?php
+        echo $user['username']
+     ?>
+     ！ あなたの権限は
+     <?php
+        echo $user['role']
+    ?>
+    です
+</h5>
+
 <?php
 
 echo $this->Html->link(

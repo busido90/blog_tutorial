@@ -9,6 +9,22 @@ class UsersController extends AppController {
         $this->Auth->allow('login', 'add', 'logout');
     }
 
+    // public function isAuthorized($user) {
+    // // 登録済ユーザーは投稿できる
+    //     if (in_array($this->action, array('add', 'find', 'view'))) {
+    //         return true;
+    //     }
+
+    //     // 投稿のオーナーは編集や削除ができる
+    //     if (in_array($this->action, array('edit', 'delete'))) {
+    //         $postId = (int) $this->request->params['pass'][0];
+    //         if ($this->Post->isOwnedBy($postId, $user['id'])) {
+    //             return true;
+    //         }
+    //     }
+    //     return parent::isAuthorized($user);
+    // }
+
     public function login() {
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {

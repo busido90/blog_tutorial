@@ -1,11 +1,34 @@
 <?php
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Session');
-    public $components = array('Session', 'Search.Prg');
+    public $components = array('Search.Prg');
     public $uses = array('Post', 'Category');
 
+    public function isAuthorized($user) {
+    // 登録済ユーザーは投稿できる
+        if (in_array($this->action, array('index', 'add', 'find', 'view'))) {
+            return true;
+        }
+
+        // 投稿のオーナーは編集や削除ができる
+        if (in_array($this->action, array('edit', 'delete'))) {
+            $postId = (int) $this->request->params['pass'][0];
+            if ($this->Post->isOwnedBy($postId, $user['id'])) {
+                return true;
+            }
+        }
+
+        return parent::isAuthorized($user);
+    }
+
     public function index() {
-        $this->set('posts', $this->Post->find('all'));
+        $this->set('posts', $this->Post->find('all',
+            array(
+                'order' => array('Post.created' => 'DESC')
+            )
+        ));
+
+        $this->set('user', $this->Auth->user());
         // pr($this->Post->find('all'));
 
         // いろいろ検証。parseParams()とpassedArgsは両方使える模様。
@@ -58,9 +81,11 @@ class PostsController extends AppController {
         )*/));
 
         if ($this->request->is('post')) {
-            $this->Post->create();
+        // $this->Post->create();
+        $this->request->data['Post']['user_id'] = $this->Auth->user('id');
             if ($this->Post->save($this->request->data)) {
                 $this->Session->setFlash(__('Your post has been saved.'));
+                // debug($this->request->data);
                 return $this->redirect(array('action' => 'index'));
             }
             $this->Session->setFlash(__('Unable to add your post.'));
