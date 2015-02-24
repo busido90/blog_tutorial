@@ -59,6 +59,8 @@ class AppController extends Controller {
             ),
             'authorize' => array('Controller') // この行を追加しました
         )
+        'Acl',
+
 	);
 
   	public function beforeFilter() {

@@ -20,6 +20,6 @@ class Post extends AppModel {
         )
     );
 
-    public $belongsTo = 'Category';
+    public $belongsTo = array('Category', 'User');
 }
 ?>

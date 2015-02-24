@@ -1,51 +1,21 @@
 <?php
-class UsersController extends AppController {
+class GroupsController extends AppController {
 
     public $helpers = array('Html', 'Form', 'Session');
     public $components = array('Session');
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('login', 'add', 'logout');
+        $this->Auth->allow('login', 'index', 'add', 'logout');
         // $this->Auth->allow('');
-
     }
-
-    // public function isAuthorized($user) {
-    // // 登録済ユーザーは投稿できる
-    //     if (in_array($this->action, array('add', 'find', 'view'))) {
-    //         return true;
-    //     }
-
-    //     // 投稿のオーナーは編集や削除ができる
-    //     if (in_array($this->action, array('edit', 'delete'))) {
-    //         $postId = (int) $this->request->params['pass'][0];
-    //         if ($this->Post->isOwnedBy($postId, $user['id'])) {
-    //             return true;
-    //         }
-    //     }
-    //     return parent::isAuthorized($user);
-    // }
-
-    public function login() {
-        if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                $this->redirect($this->Auth->redirect());
-            } else {
-                $this->Session->setFlash(__('Invalid username or password, try again'));
-            }
-        }
-    }
-
-    public function logout() {
-        $this->redirect($this->Auth->logout());
-    }    
 
     public function index() {
-        $this->User->recursive = 0;
-        $this->set('users', $this->paginate());
+        $this->Group->recursive = 0;
+        $this->set('groups', $this->paginate());
     }
 
+//しかと中
     public function view($id = null) {
         $this->User->id = $id;
         if (!$this->User->exists()) {
@@ -56,8 +26,8 @@ class UsersController extends AppController {
 
     public function add() {
         if ($this->request->is('post')) {
-            $this->User->create();
-            if ($this->User->save($this->request->data)) {
+            $this->Group->create();
+            if ($this->Group->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'));
                 $this->redirect(array('action' => 'index'));
             } else {
