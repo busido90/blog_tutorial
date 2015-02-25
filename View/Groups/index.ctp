@@ -1,4 +1,4 @@
-<h1>Blog users</h1>
+<h1>Blog groups</h1>
 <table class="table table-condensed table-bordered">
     <tr>
         <th>Id</th>

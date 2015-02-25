@@ -6,8 +6,8 @@ class GroupsController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('login', 'index', 'add', 'logout');
-        // $this->Auth->allow('');
+        // $this->Auth->allow('login', 'index', 'add', 'logout');
+        $this->Auth->allow();
     }
 
     public function index() {

@@ -58,23 +58,22 @@ class AppController extends Controller {
                 )
             ),
             'authorize' => array('Controller') // この行を追加しました
-        )
-        'Acl',
-
+        ),
+        'Acl'
 	);
 
   	public function beforeFilter() {
         // $this->Auth->allow('index', 'view');
     }
 
-//     public function isAuthorized($user) {
-//         if (isset($user['role']) && $user['role'] === 'admin') {
-//             return true;
-//         }
+    public function isAuthorized($user) {
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
 
-//         // デフォルトは拒否
-//         return false;
-// }   
+        // デフォルトは拒否
+        return false;
+    }   
 
 }
 
