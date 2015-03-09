@@ -4,22 +4,22 @@ class PostsController extends AppController {
     public $components = array('Search.Prg');
     public $uses = array('Post', 'Category');
 
-    public function isAuthorized($user) {
+    // public function isAuthorized($user) {
     // 登録済ユーザーは投稿できる
-        if (in_array($this->action, array('index', 'add', 'find', 'view'))) {
-            return true;
-        }
+    //     if (in_array($this->action, array('index', 'add', 'find', 'view'))) {
+    //         return true;
+    //     }
 
-        // 投稿のオーナーは編集や削除ができる
-        if (in_array($this->action, array('edit', 'delete'))) {
-            $postId = (int) $this->request->params['pass'][0];
-            if ($this->Post->isOwnedBy($postId, $user['id'])) {
-                return true;
-            }
-        }
+    //     // 投稿のオーナーは編集や削除ができる
+    //     if (in_array($this->action, array('edit', 'delete'))) {
+    //         $postId = (int) $this->request->params['pass'][0];
+    //         if ($this->Post->isOwnedBy($postId, $user['id'])) {
+    //             return true;
+    //         }
+    //     }
 
-        return parent::isAuthorized($user);
-    }
+    //     return parent::isAuthorized($user);
+    // }
 
     public function index() {
         $this->set('posts', $this->Post->find('all',

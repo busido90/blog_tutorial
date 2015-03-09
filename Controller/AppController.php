@@ -57,7 +57,7 @@ class AppController extends Controller {
                     'passwordHasher' => 'Simple'
                 )
             ),
-            'authorize' => array('Controller') // この行を追加しました
+            // 'authorize' => array('Controller') // この行を追加しました
         ),
         'Acl'
 	);
@@ -66,14 +66,14 @@ class AppController extends Controller {
         // $this->Auth->allow('index', 'view');
     }
 
-    public function isAuthorized($user) {
-        if (isset($user['role']) && $user['role'] === 'admin') {
-            return true;
-        }
+    // public function isAuthorized($user) {
+    //     if (isset($user['role']) && $user['role'] === 'admin') {
+    //         return true;
+    //     }
 
-        // デフォルトは拒否
-        return false;
-    }   
+    //     // デフォルトは拒否
+    //     return false;
+    // }   
 
 }
 

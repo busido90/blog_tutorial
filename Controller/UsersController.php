@@ -1,13 +1,15 @@
 <?php
-class UsersController extends AppController {
+
+    class UsersController extends AppController {
 
     public $helpers = array('Html', 'Form', 'Session');
     public $components = array('Session');
+    public $uses = array('User', 'Group');
 
     public function beforeFilter() {
         parent::beforeFilter();
-        // $this->Auth->allow('login', 'add', 'logout');
-        $this->Auth->allow();
+        $this->Auth->allow('login', 'add', 'logout');
+        // $this->Auth->allow();
 
     }
 
@@ -55,6 +57,11 @@ class UsersController extends AppController {
     }
 
     public function add() {
+
+        $this->set('select', $this->Group->find('list'/*,
+            array('fields' => array('id', 'name')
+        )*/));
+
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {

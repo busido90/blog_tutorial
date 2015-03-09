@@ -4,7 +4,6 @@
         <th>Id</th>
         <th>Name</th>
         <th>Password</th>
-        <th>Role</th>
         <th>Edit</th>
         <th>Created</th>
     </tr>
@@ -16,7 +15,6 @@
         <td><?php echo $user['User']['id']; ?></td>
         <td><?php echo $user['User']['username']; ?></td>
         <td><?php echo $user['User']['password']; ?></td>
-        <td><?php echo $user['User']['role']; ?></td>
         <td>
              <?php echo $this->Form->postLink(
                 'Delete',
